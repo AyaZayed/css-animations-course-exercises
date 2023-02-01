@@ -5,17 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transitions</title>
-    <link rel="stylesheet" href="style.scss" />
+    <link rel="stylesheet" href="./style.scss" />
   </head>
   <body>
     <form class="ui-form">
       <input class="ui-input" type="email" placeholder="your@email.com" />
-      <button class="ui-button" type="button" onclick="setState('subscribing')">
+      <button class="ui-button" type="button">
         <span>Subscribe</span>
       </button>
     </form>
   </body>
   <script>
-    // Nothing here
+    const btn = document.querySelector(".ui-button");
+    btn.addEventListener("click", () => {
+      btn.classList.add("clicked");
+    });
   </script>
 </html>

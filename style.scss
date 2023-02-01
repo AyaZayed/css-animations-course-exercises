@@ -1,4 +1,4 @@
-@import './styles/base.scss';
+// @import './styles/base.scss';
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -24,8 +24,16 @@ ul {
 }
 
 .ball {
-  height: 5vmin;
-  width: 5vmin;
+  height: 10vmin;
+  width: 10vmin;
+  margin: auto;
   border-radius: 50%;
   background: radial-gradient(circle at bottom right, #fb2324, #fe932a);
+  transition: all 1s .2s ease-in;
+
+  &:hover{
+    background: blue;
+    transform: scale(2);
+    opacity: .5;
+  }
 }
