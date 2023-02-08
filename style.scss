@@ -3,7 +3,18 @@
 body {
   font-family: "Open Sans", sans-serif;
   padding: 5vmin;
-  background-color: #f4f4f4;
+}
+
+#app {
+  &[data-theme="light"] {
+    --bg: #f4f4f4;
+    --fontColor: rgb(19, 17, 17);
+  }
+
+  &[data-theme="dark"] {
+    --bg: #383737;
+    --fontColor: rgb(243, 235, 235);
+  }
 }
 
 a {
@@ -12,6 +23,8 @@ a {
 
 h1 {
   margin: 0;
+  background-color: var(--bg);
+  color: var(--fontColor);
 }
 
 small {
@@ -41,5 +54,22 @@ ul {
   }
   to {
     transform: translateX(25vw);
+  }
+}
+
+.button {
+  background-color: blue;
+  color: #f4f4f4;
+  padding: 1rem;
+  border: none;
+  transition: all 0.3s;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:active {
+    transition-duration: 0.1s;
+    transform: translateY(20%);
   }
 }

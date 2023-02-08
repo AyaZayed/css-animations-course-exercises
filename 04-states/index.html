@@ -8,19 +8,42 @@
     <link rel="stylesheet" href="style.scss" />
   </head>
   <body>
-    <form class="ui-form" data-state="subscribe">
+    <form class="ui-form">
       <input class="ui-input" type="email" placeholder="your@email.com" />
-      <button class="ui-button" type="button" onclick="setState('subscribing')">
-        <span>Subscribe</span>
-        <span>Subscribing</span>
-        <span>Success!</span>
-        <span>Error</span>
+      <button class="ui-button" type="button">
+        <span class="ui-text"></span>
       </button>
     </form>
   </body>
   <script>
-    const form = document.querySelector('.ui-form');
+    const form = document.querySelector(".ui-form");
+    const inputEl = document.querySelector(".ui-input");
+    const buttonEl = document.querySelector(".ui-button");
+    const spanEl = document.querySelector(".ui-text");
 
-    // ...
+    const machine = {
+      initial: "subscribe",
+      states: {
+        subscribe: {
+          on: { CLICK: "subscribing" },
+        },
+        subscribing: {
+          on: { CLICK: "success" },
+        },
+        success: {
+          on: { CLICK: "error" },
+        },
+        error: {
+          on: { CLICK: "subscribe" },
+        },
+      },
+    };
+
+    buttonEl.addEventListener("click", () => {
+      const currentState = form.dataset.state ?? machine.initial;
+      const nextState =
+        machine.states[currentState].on["CLICK"] ?? currentState;
+      form.dataset.state = nextState;
+    });
   </script>
 </html>
