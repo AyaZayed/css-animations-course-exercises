@@ -1,4 +1,4 @@
-@import '../styles/base.scss';
+@import "../styles/base.scss";
 
 :root {
   --color-gray: #8c97b7;
@@ -7,7 +7,7 @@
   --input-height: 3rem;
   --transition-duration: 0.3s;
   --transition-easing: cubic-bezier(0.5, 0, 0.5, 1);
-  --animation-duration: 0.8s;
+  --animation-duration: 1s;
 }
 body {
   display: flex;
@@ -25,27 +25,29 @@ body {
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;
   grid-column-gap: 1rem;
-  grid-template-areas: 'input button';
+  grid-template-areas: "input button";
   transition: all var(--transition-duration) var(--transition-easing);
   will-change: transform;
-
   --color: var(--color-gray);
   &:focus-within {
     --color: var(--color-blue);
   }
 
+  --delay: var(--animation-duration);
+  --stagger: 0.5s;
+
   animation: slide-up var(--animation-duration) var(--transition-easing);
 
   > .ui-input,
   > .ui-button {
-    // Add animations here
+    animation: slide-up var(--animation-duration)
+      calc((var(--delay) - var(--stagger)) * var(--i)) both;
   }
 
   > .ui-input {
-    // ...
-  }
-  > .ui-button {
-    // ...
+    &:invalid:not(:focus) {
+      animation: shake var(--animation-duration) var(--transition-easing);
+    }
   }
 }
 
